@@ -3,32 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Model Carousel</title>
+    <title>3D Product Carousel</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="carousel-container">
-        <div id="carousel">
-            <canvas id="modelCanvas1"></canvas>
-            <canvas id="modelCanvas2"></canvas>
-            <canvas id="modelCanvas3"></canvas>
-        </div>
-        <div class="carousel-controls">
-            <button id="prevBtn">&#8592;</button>
-            <button id="nextBtn">&#8594;</button>
-        </div>
+        <div id="carousel"></div>
+        <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+        <button class="carousel-button next" id="nextBtn">&#10095;</button>
     </div>
 
-    <!-- Popup for product details -->
+    <!-- Popup for displaying product information -->
     <div id="popup" class="popup">
         <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <p id="product-info">This is a product</p>
+            <span class="close">&times;</span>
+            <p id="product-info">Product Information</p>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
     <script src="carousel.js"></script>
 </body>
 </html>
