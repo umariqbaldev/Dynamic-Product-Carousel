@@ -1,4 +1,5 @@
-// Basic Three.js Setup
+// Three.js Setup
+
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -7,7 +8,7 @@ renderer.setClearColor(0xffffff);  // Set background to white
 document.getElementById('carousel').appendChild(renderer.domElement);
 
 // Lighting setup
-var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);  // Soft white light
+var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);  // white light
 scene.add(ambientLight);
 
 var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -78,7 +79,7 @@ function updateCarousel() {
     if (models.length > 0) {
         var targetPosition = models[currentModelIndex].position;
 
-        // Clear any previous interval to prevent multiple movements at the same time
+        
         if (moveInterval) {
             clearInterval(moveInterval);
         }
@@ -89,7 +90,7 @@ function updateCarousel() {
                 camera.position.x += (targetPosition.x - camera.position.x) * transitionSpeed;
                 camera.lookAt(models[currentModelIndex].position);
             } else {
-                clearInterval(moveInterval);  // Stop moving once target is reached
+                clearInterval(moveInterval);  
             }
         }, 16);  // 60fps
     }
@@ -110,20 +111,20 @@ document.getElementById('nextBtn').addEventListener('click', () => {
 function onMouseClick(event) {
     event.preventDefault();
 
-    // Calculate mouse position in normalized device coordinates (-1 to +1) for raycasting
+    // Calculate mouse position in coordinates from (-1 to +1) for raycasting
     mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
     raycaster.setFromCamera(mouse, camera);
 
-    // Check for intersections with models (checking the whole scene's children)
+    // Check for intersections with models 
     var intersects = raycaster.intersectObjects(scene.children, true);
 
     if (intersects.length > 0) {
         // Traverse up to find the root object (model) and match it with models array
         var clickedObject = intersects[0].object;
 
-        // Move up the object hierarchy to find the model's root scene
+       
         while (clickedObject.parent && clickedObject.parent.type !== 'Scene') {
             clickedObject = clickedObject.parent;
         }
@@ -157,7 +158,7 @@ function animate() {
     // Rotate each model slightly
   
     models.forEach(model => {
-            model.rotation.y += 0.01;  // Adjust the speed of rotation as needed
+            model.rotation.y += 0.01;  // Adjust the speed of rotation
         });
 
     renderer.render(scene, camera);
